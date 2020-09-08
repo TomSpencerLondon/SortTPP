@@ -3,6 +3,7 @@ package com.codurance;
 import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,18 @@ public class SortTest {
     assertSorted(sort(intList(2, 1)), intList(1, 2));
     assertSorted(sort(intList(1, 3, 2)), intList(1, 2, 3));
     assertSorted(sort(intList(3, 2, 1)), intList(1, 2, 3));
+
+    sortBigList(1000);
+  }
+
+  private void sortBigList(int n) {
+    List<Integer> unsorted = new ArrayList<>();
+    for (int i = 0; i < n; i++)
+      unsorted.add((int)(Math.random() * 10000.0));
+    List<Integer> sorted = sort(unsorted);
+
+    for (int i = 0; i < n - 1; i++)
+      assertTrue(sorted.get(i) <= sorted.get(i + 1));
   }
 
   private void assertSorted(List<Integer> unsortedList, List<Integer> sorted) {
