@@ -13,13 +13,14 @@ public class SortTest {
   @Test
   void sortings() {
     assertThat(sort(intList()), is(intList()));
+    assertThat(sort(intList(1)), is(intList(1)));
   }
 
-  private List<Integer> intList() {
-    return asList();
+  private List<Integer> intList(Integer... ints) {
+    return asList(ints);
   }
 
   private List<Integer> sort(List<Integer> list){
-    return new ArrayList<>();
+    return list;
   }
 }
