@@ -18,6 +18,7 @@ public class SortTest {
     assertSorted(sort(intList(1)), intList(1));
     assertSorted(sort(intList(2, 1)), intList(1, 2));
     assertSorted(sort(intList(1, 3, 2)), intList(1, 2, 3));
+    assertSorted(sort(intList(3, 2, 1)), intList(1, 2, 3));
   }
 
   private void assertSorted(List<Integer> unsortedList, List<Integer> sorted) {
@@ -29,14 +30,17 @@ public class SortTest {
   }
 
   private List<Integer> sort(List<Integer> list){
-    for (int index = 0; list.size() > index + 1; index++)
-      if (outOfOrder(list.get(index), list.get(index + 1)))
-        swap(list, index);
+    for (int size = list.size(); size > 0; size--)
+      for (int index = 0; list.size() > index + 1; index++)
+        if (outOfOrder(list, index))
+          swap(list, index);
+
+
     return list;
   }
 
-  private boolean outOfOrder(Integer integer, Integer integer2) {
-    return integer > integer2;
+  private boolean outOfOrder(List<Integer> list, Integer index) {
+    return list.get(index) > list.get(index + 1);
   }
 
   private void swap(List<Integer> list, int index) {
