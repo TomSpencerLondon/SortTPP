@@ -12,8 +12,14 @@ public class SortTest {
 
   @Test
   void sortings() {
-    assertThat(sort(intList()), is(intList()));
-    assertThat(sort(intList(1)), is(intList(1)));
+    List<Integer> unsortedList = sort(intList());
+    List<Integer> sorted = intList();
+    assertSorted(unsortedList, sorted);
+    assertSorted(sort(intList(1)), intList(1));
+  }
+
+  private void assertSorted(List<Integer> unsortedList, List<Integer> sorted) {
+    assertThat(unsortedList, is(sorted));
   }
 
   private List<Integer> intList(Integer... ints) {
