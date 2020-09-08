@@ -16,6 +16,7 @@ public class SortTest {
     List<Integer> sorted = intList();
     assertSorted(unsortedList, sorted);
     assertSorted(sort(intList(1)), intList(1));
+    assertSorted(sort(intList(2, 1)), intList(1, 2));
   }
 
   private void assertSorted(List<Integer> unsortedList, List<Integer> sorted) {
@@ -27,6 +28,14 @@ public class SortTest {
   }
 
   private List<Integer> sort(List<Integer> list){
+    if(list.size() > 1) {
+
+      if (list.get(0) > list.get(1)) {
+        Integer temp = list.get(0);
+        list.set(0, list.get(1));
+        list.set(1, temp);
+      }
+    }
     return list;
   }
 }
