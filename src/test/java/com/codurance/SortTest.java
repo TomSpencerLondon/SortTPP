@@ -19,6 +19,7 @@ public class SortTest {
     assertSorted(sort(intList(1)), intList(1));
     assertSorted(sort(intList(2, 1)), intList(1, 2));
     assertSorted(sort(intList( 2, 1, 3)), intList(1, 2, 3));
+    assertSorted(sort(intList( 2, 3, 1)), intList(1, 2, 3));
   }
 
   private void sortBigList(int n) {
@@ -41,8 +42,8 @@ public class SortTest {
 
   private List<Integer> sort(List<Integer> list){
     List<Integer> sorted = new ArrayList<>();
-    if (list.size() <= 1)
-      return list;
+    if (list.size() == 1)
+      sorted.add(list.get(0));
     else if (list.size() == 2){
       if (list.get(0) > list.get(1)){
         sorted.add(list.get(1));
